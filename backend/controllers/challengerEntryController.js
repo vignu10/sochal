@@ -1,4 +1,4 @@
-const ChallengeEntry = require('../models/ChallengeEntry');
+const ChallengeEntry = require('../models/ChallengerEntryModel');
 
 // Create a new challenge entry
 exports.createChallengeEntry = async (req, res) => {

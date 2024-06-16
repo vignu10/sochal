@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const challengeEntryController = require('../controllers/challengeEntryController');
+const challengeEntryController = require('../controllers/challengerEntryController');
 
 // Route to create a new challenge entry
 router.post('/', challengeEntryController.createChallengeEntry);
