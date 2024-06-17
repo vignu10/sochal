@@ -23,13 +23,16 @@ app.get('/', (req, res) => {
 });
 
 // Import routes and use them
-const challengeRoutes = require('./routes/challengesRoutes');
-const challengerRoutes = require('./routes/challengersRoutes');
-const challengeEntryRoutes = require('./routes/challengerEntryRoutes');
+const userRoutes = require('./routes/userRoutes');
+const habitRoutes = require('./routes/habitRoutes');
+const groupRoutes = require('./routes/groupRoutes');
 
-app.use('/api/challenges', challengeRoutes);
-app.use('/api/challengers', challengerRoutes);
-app.use('/api/challengeEntries', challengeEntryRoutes);
+
+app.use('/api/user' , userRoutes)
+
+app.use('/api/groups', groupRoutes);
+app.use('/api/habit', habitRoutes);
+
 
 // Start the server
 const PORT = process.env.PORT || 3000;

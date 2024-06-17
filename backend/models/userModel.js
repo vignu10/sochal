@@ -5,10 +5,8 @@ const UserSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    email: {
+    groupName: {
         type: String,
-        required: true,
-        unique: true
     },
     date: {
         type: Date,

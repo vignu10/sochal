@@ -2,14 +2,14 @@ const User = require('../models/userModel');
 
 // Create a new user
 exports.createUser = async (req, res) => {
-    const { name, email } = req.body;
+    const { name, groupName } = req.body;
 
     try {
-        const newUser = new User({ name, email });
+        const newUser = new User({ name, groupName });
         const user = await newUser.save();
         res.json(user);
     } catch (err) {
-        res.status(500).send('Server Error');
+        res.status(500).send(err);
     }
 };
 
@@ -19,6 +19,6 @@ exports.getAllUsers = async (req, res) => {
         const users = await User.find();
         res.json(users);
     } catch (err) {
-        res.status(500).send('Server Error');
+        res.status(500).send(err);
     }
 };
