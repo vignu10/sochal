@@ -8,10 +8,6 @@ const UserSchema = new mongoose.Schema({
     groupName: {
         type: String,
     },
-    date: {
-        type: Date,
-        default: Date.now
-    }
 });
 
 module.exports = mongoose.model('User', UserSchema);
