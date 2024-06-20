@@ -1,15 +1,9 @@
+import LoginStates from "./states/LoginStates";
 
 export default function Home() {
   return (
-     <div>
-        <div className="line-wrapper  ">
-         hi
-         <div className="set"></div>
-         <div className="set"></div>
-         <div className="set"></div>
-         <div className="set"></div>
-         <div className="set"></div>
-        </div>
+     <div className="flex justify-end margin-0 ">
+        <LoginStates></LoginStates>
      </div>
   );
 }

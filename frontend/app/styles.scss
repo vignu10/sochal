@@ -6,3 +6,12 @@
         @apply bg-[url('')]
     }
 }
+
+.quote-container {
+    @apply max-w-[600px] p-5 bg-[#3C5B6F] rounded-lg shadow-md animate-fadeIn my-4;
+
+    .quote-para {
+        @apply text-4xl bg-white
+        
+    }
+}
