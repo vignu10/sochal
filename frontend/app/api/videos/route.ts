@@ -1,31 +1,55 @@
-import { NextResponse } from 'next/server';
-import { sql } from '@vercel/postgres';
+import { NextRequest, NextResponse } from 'next/server';
+import { handleCreateVideo, handleGetVideo, handleUpdateVideo } from '@/app/controllers/videoController';
 
-type Video = {
-  id: number;
-  challengeId: number;
-  userId: number;
-  videoLink: string;
-  uploadedAt: string;
-};
-
-export async function POST(req: Request) {
+export async function POST(req: NextRequest) {
   try {
-    const { challengeId, userId, videoLink }: { challengeId: number; userId: number; videoLink: string } = await req.json();
+    const body = await req.json();
+    const { action, ...data } = body;
 
-    if (!challengeId || !userId || !videoLink) {
-      return NextResponse.json({ error: 'Challenge ID, User ID, and video link are required' }, { status: 400 });
+    switch (action) {
+      case 'create':
+        return handleCreateVideo(data.userId, data.groupId, data.videoLink);
+      case 'get':
+        return handleGetVideo(data.id);
+      case 'update':
+        return handleUpdateVideo(data.id, data.videoLink);
+      default:
+        return NextResponse.json({ error: 'Invalid action' }, { status: 400 });
+    }
+  } catch (error) {
+    console.error('Error handling request:', error);
+    return NextResponse.json({ error: 'Request handling failed' }, { status: 500 });
+  }
+}
+
+export async function GET(req: NextRequest) {
+  try {
+    const { searchParams } = new URL(req.url);
+    const id = parseInt(searchParams.get('id') || '', 10);
+    
+    if (isNaN(id)) {
+      return NextResponse.json({ error: 'ID is required' }, { status: 400 });
     }
 
-    const { rows } = await sql<Video>`
-      INSERT INTO videos (challenge_id, user_id, video_link)
-      VALUES (${challengeId}, ${userId}, ${videoLink})
-      RETURNING *;
-    `;
-
-    return NextResponse.json(rows[0], { status: 200 });
+    return handleGetVideo(id);
   } catch (error) {
-    console.error('Error uploading video:', error);
-    return NextResponse.json({ error: 'Video upload failed' }, { status: 500 });
+    console.error('Error handling request:', error);
+    return NextResponse.json({ error: 'Request handling failed' }, { status: 500 });
+  }
+}
+
+export async function PUT(req: NextRequest) {
+  try {
+    const body = await req.json();
+    const { id, videoLink } = body;
+
+    if (!id || !videoLink) {
+      return NextResponse.json({ error: 'ID and videoLink are required' }, { status: 400 });
+    }
+
+    return handleUpdateVideo(id, videoLink);
+  } catch (error) {
+    console.error('Error handling request:', error);
+    return NextResponse.json({ error: 'Request handling failed' }, { status: 500 });
   }
 }

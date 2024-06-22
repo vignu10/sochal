@@ -13,31 +13,32 @@ datasource db {
   url      = env("POSTGRES_PRISMA_URL")
 }
   
-
-model user {
-  id        Int      @id @default(autoincrement())
-  username  String   @unique
-  createdAt DateTime @default(now())
-  challenges challenge[]
-  videos    video[]
+model User {
+  id        Int       @id @default(autoincrement())
+  username  String    @unique
+  groups    Group[]   @relation("UserGroups")
+  videos    Video[]
 }
 
-model challenge {
-  id          Int      @id @default(autoincrement())
-  user        user     @relation(fields: [userId], references: [id])
+model Group {
+  id         Int       @id @default(autoincrement())
+  groupname  String
+  users      User[]    @relation("UserGroups")
+  videos     Video[]
+}
+
+model Video {
+  id          Int       @id @default(autoincrement())
   userId      Int
-  title       String
-  description String?
-  createdAt   DateTime @default(now())
-  videos      video[]
+  groupId     Int
+  videoLink   String
+  dateUploaded DateTime @default(now())
+  user        User      @relation(fields: [userId], references: [id])
+  group       Group     @relation(fields: [groupId], references: [id])
 }
 
-model video {
-  id         Int      @id @default(autoincrement())
-  challenge  challenge @relation(fields: [challengeId], references: [id])
-  challengeId Int
-  user       user     @relation(fields: [userId], references: [id])
-  userId     Int
-  videoLink  String
-  uploadedAt DateTime @default(now())
+model Admin {
+  id       Int    @id @default(autoincrement())
+  email    String @unique
+  password String
 }
