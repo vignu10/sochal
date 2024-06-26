@@ -1,4 +1,4 @@
-import prisma from '../../prisma-client';
+import prisma from '../api/prisma-client';
 
 export async function createVideo(userId: number, groupId: number, videoLink: string) {
   return prisma.video.create({

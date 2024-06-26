@@ -1,4 +1,4 @@
-import prisma from '../../prisma-client';
+import prisma from '../api/prisma-client';
 
 export async function createUser(username: string) {
   return prisma.user.create({
