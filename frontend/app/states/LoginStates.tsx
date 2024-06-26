@@ -61,16 +61,17 @@ const LoginState = () =>  {
                 <button
                   onClick={() => handleContinue()}
                   className="w-[50%] hover:bg-[#948979]  rounded-[20px] bg-gradient-to-r from-[#948979] to-[#DFD0B8] px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-[#948979] focus-visible:outline focus-visible:outline-[#948979] focus-visible:outline-offset-2 focus-visible:outline-[#948979]"
+
                 >
                    SIGN IN
                 </button>
               </div>
             </form>
           </div>
-          
         {/* <p className=" text-white p-2  left-0 text-left animate-fade-in text-xl">
           "Success is the sum of small efforts, repeated day in and day out. <br />Embrace the habit challenges, for it's the daily work that builds greatness."
         </p> */}
+
         </div>
       </>
     )
