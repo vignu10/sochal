@@ -17,6 +17,18 @@ const config: Config = {
       '2xl': '1439px',
        '3xl': '2560px'
     },
+    animation: {
+      'fade-in-out': 'fadeInOut 4s ease-in-out infinite',
+    },
+    keyframes: {
+      fadeInOut: {
+        '0%, 100%': { opacity: '0' },
+        '50%': { opacity: '1' },
+      },
+    },  
+    colors:{
+      "dark-silver" : "#6e6e72"
+    },
     extend: {
       borderWidth: {
         DEFAULT: '1px',
@@ -25,7 +37,7 @@ const config: Config = {
         '3': '3px',
         '4': '4px',
         '6': '6px',
-        '8': '8px',
+        '8': '8px', 
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",

@@ -2,11 +2,51 @@
 @tailwind components;
 @tailwind utilities;
 
+
 :root {
   --foreground-rgb: 21, 52, 72,
   --background-start-rgb: 21, 52, 72;
   --background-end-rgb: 21, 52, 72;
   margin: 0;
+}
+
+.projected-input {
+  @apply relative;
+
+  label {
+      @apply text-dark-silver text-[14px] font-medium absolute left-0 top-[20px] origin-top-left -translate-y-[50%] transition-all duration-[0.1s] ease-out pointer-events-none ml-5 max-md:text-[12px];
+  }
+
+  img {
+      @apply z-[1] w-5 cursor-pointer absolute text-[1rem];
+  }
+
+  #eye-icon {
+      @apply -translate-y-[50%] mr-4 top-[50%] right-[10px] max-sm:right-0;
+  }
+
+  input {
+      @apply h-[40px];
+  }
+
+  input,
+  textarea {
+      @apply text-[14px] resize-none border border-[#D7D9DC] px-5 pt-[13px] pb-[13px] transition-all duration-[0.1s] ease-out w-full rounded-[10px] font-medium max-md:text-[12px] max-md:px-[10px];
+
+      &:not(:read-only):hover,
+      &:not(:read-only):focus {
+          @apply border-[#0071E7] border ;
+      }
+
+      &:not(:placeholder-shown)+label,
+      &:focus:not(:read-only)+label {
+          @apply top-px -translate-y-[50%] scale-90 px-[7px] ml-4 bg-[#153448];
+      }
+
+      &:not(:focus):not(:placeholder-shown):not(:read-only)+label {
+          @apply text-dark-silver ml-4 bg-[#153448];
+      }
+  }
 }
 
 @media (prefers-color-scheme: dark) {
