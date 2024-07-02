@@ -13,9 +13,8 @@
 .projected-input {
   @apply relative;
 
-  label {
-      @apply text-dark-silver text-[14px] font-medium absolute left-0 top-[20px] origin-top-left -translate-y-[50%] transition-all duration-[0.1s] ease-out pointer-events-none ml-5 max-md:text-[12px];
-  }
+
+
 
   img {
       @apply z-[1] w-5 cursor-pointer absolute text-[1rem];
@@ -58,7 +57,7 @@
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
+  color: #DFD0B8;
   background: linear-gradient(
       to bottom,
       transparent,
